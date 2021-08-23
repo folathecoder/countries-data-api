@@ -1,0 +1,124 @@
+//TODO: ==========>>>> BASE STYLES
+
+//Font Family
+$font : 'Nunito Sans', sans-serif;
+
+//Font Weights
+$weight-100: 300;
+$weight-200: 600;
+$weight-300: 800;
+
+
+
+body {
+    max-width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-200);
+    color: var(--color-300);
+    font-size: rem(16);
+    font-family: $font;
+    font-weight: $weight-100;
+}
+
+//TODO: ==========>>>> TYPOGRAPHY
+h1 {
+    font-size: rem(16);
+    font-weight: $weight-300;
+
+    @include media-query (tablet) {
+        font-size: rem(22);
+    }
+}
+
+
+//TODO: ==========>>>> HEADER SECTION
+
+//===== Header
+.header {
+    background-color: var(--color-100);
+    max-width: 100%;
+    min-height: rem(0);
+    box-shadow: rem(0) rem(1) rem(5) var(--color-200);
+
+    &__inner {
+        max-width: rem(1300);
+        min-height: rem(80);
+        padding: rem(20) rem(20);
+        margin: rem(0) auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+.header-theme {
+    background: transparent;
+    color: var(--color-300);
+    border: none;
+    font-weight: $weight-100;
+    cursor: pointer;
+
+    @include media-query (tablet) {
+        font-size: rem(15);
+    }
+}
+.theme-switch-icon {
+    margin-right: rem(5);
+}
+
+//===== Option
+.options {
+    max-width: 100%;
+    min-height: rem(0);
+
+    &__inner {
+        max-width: rem(1300);
+        min-height: rem(80);
+        padding: rem(20);
+        margin: rem(0) auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.search {
+    // background-color: red;
+    width: 100%;
+
+    &__box {
+        max-width: 100%;
+        background-color: var(--color-100);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: rem(5);
+        box-shadow: rem(0) rem(0) rem(10) var(--color-200);
+    }
+
+    &__input {
+        width: 85%;
+        padding: rem(13);
+        border: none;
+        position: relative;
+        background-color: transparent;
+        color: var(--color-300);
+        border-radius: rem(0) rem(5) rem(5) rem(0);
+
+        &:active {
+            outline: none;
+        }
+    }
+
+    &__icon {
+        padding: rem(13) rem(13) rem(13) rem(33);
+    }
+
+}
+
+.filter {
+    background-color: #fff;
+    select {
+        background-color: red;
+    }
+}

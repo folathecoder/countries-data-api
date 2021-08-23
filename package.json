@@ -1,0 +1,32 @@
+{
+  "name": "countries-data-api",
+  "version": "1.0.0",
+  "description": "countries data fetched from a third-party api",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/folathecoder/countries-data-api.git"
+  },
+  "keywords": [
+    "api",
+    "project"
+  ],
+  "author": "folarin akinloye",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/folathecoder/countries-data-api/issues"
+  },
+  "homepage": "https://github.com/folathecoder/countries-data-api#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "sass": "^1.38.0"
+  },
+  "dependencies": {
+    "core-js": "^3.16.2",
+    "regenerator": "^0.14.7"
+  }
+}
