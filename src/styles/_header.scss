@@ -1,0 +1,127 @@
+//TODO: ==========>>>> HEADER SECTION
+
+//===== Header
+.header {
+    background-color: var(--color-100);
+    max-width: 100%;
+    min-height: rem(0);
+    box-shadow: $shadow;
+
+    &__inner {
+        max-width: $max-width;
+        min-height: rem(80);
+        padding: rem(20) rem(20);
+        margin: rem(0) auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+.header-theme {
+    background: transparent;
+    color: var(--color-300);
+    border: none;
+    font-weight: $weight-100;
+    cursor: pointer;
+
+    @include media-query (tablet) {
+        font-size: rem(15);
+    }
+}
+.theme-switch-icon {
+    margin-right: rem(5);
+}
+
+//===== Option
+.options {
+    max-width: 100%;
+    min-height: rem(0);
+
+    &__inner {
+        max-width: $max-width;
+        min-height: rem(80);
+        padding: rem(20);
+        margin: rem(0) auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        & > * {
+            flex: 1;
+        }
+
+        @include media-query (tablet-mini) {
+            flex-direction: row;
+        }
+    }
+}
+
+.search {
+    width: 100%;
+    flex: 1;
+
+    &__box {
+        max-width: 100%;
+        background-color: var(--color-100);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: rem(5);
+        box-shadow: $shadow;
+    }
+
+    &__input {
+        width: 85%;
+        padding: rem(13);
+        border: none;
+        position: relative;
+        background-color: transparent;
+        color: var(--color-300);
+        border-radius: rem(0) rem(5) rem(5) rem(0);
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__icon {
+        padding: rem(13) rem(13) rem(13) rem(33);
+    }
+
+}
+
+.filter {
+    flex: 2;
+    text-align: left;
+    width: 100%;
+
+    @include media-query (tablet-mini) {
+        text-align: right;
+    }
+
+    select {
+        background-color: var(--color-100);
+        color: white;
+        padding: rem(16) rem(10);
+        margin-top: rem(20);
+        width: rem(200);
+        border-radius: rem(5);
+        border: none;
+        box-shadow: $shadow;
+        cursor: pointer;
+
+        @include media-query (tablet-mini) {
+            margin-top: rem(0);
+        }
+
+        &:focus,
+        &:hover {
+            outline: none;
+        }
+
+        option {
+            cursor: pointer;
+        }
+    }
+}

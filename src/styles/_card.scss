@@ -1,0 +1,23 @@
+//TODO: ==========>>>> CARD
+.card {
+    background-color: var(--color-100);
+    box-shadow: $shadow;
+    border-radius: rem(5);
+
+    &__image img {
+        border-radius: rem(5) rem(5) rem(0) rem(0);
+    }
+    &__title {
+        padding: rem(20) rem(20) rem(10);
+    }
+    &__info {
+        padding: rem(5) rem(20) rem(30);
+        p {
+            font-weight: $weight-200;
+            line-height: rem(25);
+        }
+        span {
+            font-weight: $weight-100;
+        }
+    }
+}

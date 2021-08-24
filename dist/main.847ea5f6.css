@@ -54,6 +54,16 @@ h1 {
   }
 }
 
+h2 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+@media screen and (min-width: 992px) {
+  h2 {
+    font-size: 1.125rem;
+  }
+}
+
 .header {
   background-color: var(--color-100);
   max-width: 100%;
@@ -101,9 +111,18 @@ h1 {
   align-items: center;
   justify-content: space-between;
 }
+.options__inner > * {
+  flex: 1;
+}
+@media screen and (min-width: 786px) {
+  .options__inner {
+    flex-direction: row;
+  }
+}
 
 .search {
   width: 100%;
+  flex: 1;
 }
 .search__box {
   max-width: 100%;
@@ -112,7 +131,7 @@ h1 {
   align-items: center;
   justify-content: space-between;
   border-radius: 0.3125rem;
-  box-shadow: 0rem 0rem 0.625rem var(--color-200);
+  box-shadow: 0rem 0.0625rem 0.3125rem var(--color-200);
 }
 .search__input {
   width: 85%;
@@ -123,7 +142,7 @@ h1 {
   color: var(--color-300);
   border-radius: 0rem 0.3125rem 0.3125rem 0rem;
 }
-.search__input:active {
+.search__input:focus {
   outline: none;
 }
 .search__icon {
@@ -131,10 +150,73 @@ h1 {
 }
 
 .filter {
-  background-color: #fff;
+  flex: 2;
+  text-align: left;
+  width: 100%;
+}
+@media screen and (min-width: 786px) {
+  .filter {
+    text-align: right;
+  }
 }
 .filter select {
-  background-color: red;
+  background-color: var(--color-100);
+  color: white;
+  padding: 1rem 0.625rem;
+  margin-top: 1.25rem;
+  width: 12.5rem;
+  border-radius: 0.3125rem;
+  border: none;
+  box-shadow: 0rem 0.0625rem 0.3125rem var(--color-200);
+  cursor: pointer;
+}
+@media screen and (min-width: 786px) {
+  .filter select {
+    margin-top: 0rem;
+  }
+}
+.filter select:focus, .filter select:hover {
+  outline: none;
+}
+.filter select option {
+  cursor: pointer;
+}
+
+.container {
+  max-width: 100%;
+  min-height: 0rem;
+}
+.container__inner {
+  max-width: 81.25rem;
+  margin: 0rem auto;
+  padding: 1.25rem;
+  min-height: 31.25rem;
+  display: grid;
+  gap: 2.8125rem;
+  grid-template-columns: repeat(auto-fill, minmax(15.625rem, 1fr));
+  grid-auto-rows: 1fr;
+}
+
+.card {
+  background-color: var(--color-100);
+  box-shadow: 0rem 0.0625rem 0.3125rem var(--color-200);
+  border-radius: 0.3125rem;
+}
+.card__image img {
+  border-radius: 0.3125rem 0.3125rem 0rem 0rem;
+}
+.card__title {
+  padding: 1.25rem 1.25rem 0.625rem;
+}
+.card__info {
+  padding: 0.3125rem 1.25rem 1.875rem;
+}
+.card__info p {
+  font-weight: 600;
+  line-height: 1.5625rem;
+}
+.card__info span {
+  font-weight: 300;
 }
 
 /*# sourceMappingURL=/main.847ea5f6.css.map */

@@ -1,0 +1,18 @@
+//TODO: ==========>>>> TYPOGRAPHY
+h1 {
+    font-size: rem(16);
+    font-weight: $weight-300;
+
+    @include media-query (tablet) {
+        font-size: rem(22);
+    }
+}
+
+h2 {
+    font-size: rem(16);
+    font-weight: $weight-200;
+
+    @include media-query (tablet) {
+        font-size: rem(18);
+    }
+}
