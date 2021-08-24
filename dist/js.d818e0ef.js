@@ -13041,10 +13041,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 //TODO: ==========>>>> THEME SWITCH
 var container = document.querySelector('.container__inner');
+var spinnerContainer = document.querySelector('.container__spinner');
+var mainContainer = document.querySelector('.container');
 var darkIcon = document.querySelector('.header-theme-dark-icon');
 var lightIcon = document.querySelector('.header-theme-light-icon');
 var themeBtn = document.querySelector('.header-theme');
-var body = document.body; // ====> Deactivate Light Mode Icon (Default)
+var body = document.body;
+var search = document.querySelector('.search__input'); // ====> Deactivate Light Mode Icon (Default)
 
 lightIcon.style.display = 'none'; // ====> Target the theme switch button
 
@@ -13062,7 +13065,14 @@ themeBtn.addEventListener('click', function (e) {
     body.classList.remove('light-theme');
     body.classList.add('dark-theme');
   }
-}); //TODO: ==========>>>> FETCH ALL COUNTRY DATA
+}); //TODO: ==========>>>> PRELOADER SPINNER 
+
+var spinner = function spinner(parentElement) {
+  var markup = "\n    <div class=\"container__spinner\">\n        <div class=\"spinner\">\n        <div class=\"spinner__spin\">\n            <i class=\"fas fa-spinner\"></i>\n        </div>\n        </div>\n    </div>\n    ";
+  parentElement.innerHTML = "";
+  parentElement.insertAdjacentHTML('afterbegin', markup);
+}; //TODO: ==========>>>> FETCH ALL COUNTRY DATA
+
 
 var countryData = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
@@ -13072,47 +13082,67 @@ var countryData = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            _context.next = 3;
+            //Insert Spinner
+            spinner(container);
+            _context.next = 4;
             return fetch('https://restcountries.eu/rest/v2/all');
 
-          case 3:
+          case 4:
             response = _context.sent;
 
             if (response.ok) {
-              _context.next = 6;
+              _context.next = 7;
               break;
             }
 
             throw new Error('Could not fetch data from the API!');
 
-          case 6:
-            _context.next = 8;
+          case 7:
+            _context.next = 9;
             return response.json();
 
-          case 8:
+          case 9:
             data = _context.sent;
             res = data;
             console.log(res); //Render Fetch Data to the Homepage
+            // const markup = res.map(country => {
+            //     return `
+            //     <div class="card">
+            //     <a href="#${country.alpha3Code}">
+            //         <div class="card__image">
+            //         <img src="${country.flag}" alt="${country.name}" />
+            //         </div>
+            //         <div class="card__title"><h2>${country.name}</h2></div>
+            //         <div class="card__info">
+            //         <p>Population: <span>${country.population}</span></p>
+            //         <p>Region: <span>${country.region}</span></p>
+            //         <p>Capital: <span>${country.capital}</span></p>
+            //         </div>
+            //     </a>
+            //    </div>
+            //     `
+            // }).join('');
 
             markup = res.map(function (country) {
-              return "\n            <div class=\"card\">\n                <div class=\"card__image\">\n                <img src=\"".concat(country.flag, "\" alt=\"").concat(country.name, "\" />\n                </div>\n                <div class=\"card__title\"><h2>").concat(country.name, "</h2></div>\n                <div class=\"card__info\">\n                <p>Population: <span>").concat(country.population, "</span></p>\n                <p>Region: <span>").concat(country.region, "</span></p>\n                <p>Capital: <span>").concat(country.capital, "</span></p>\n                </div>\n           </div>\n            ");
+              return "\n            <div class=\"card\">\n            <a href=\"#".concat(country.alpha3Code, "\">\n                <div class=\"card__image\">\n                <img src=\"").concat(country.flag, "\" alt=\"").concat(country.name, "\" />\n                </div>\n                <div class=\"card__title\"><h2>").concat(country.name, "</h2></div>\n                <div class=\"card__info\">\n                <p>Population: <span>").concat(country.population, "</span></p>\n                <p>Region: <span>").concat(country.region, "</span></p>\n                <p>Capital: <span>").concat(country.capital, "</span></p>\n                </div>\n            </a>\n           </div>\n            ");
             }).join('');
-            container.innerHTML = "";
-            container.insertAdjacentHTML('beforeend', markup);
-            _context.next = 19;
+            container.innerHTML = ""; // spinnerContainer.style.display = 'none';
+
+            container.insertAdjacentHTML('afterbegin', markup);
+            _context.next = 20;
             break;
 
-          case 16:
-            _context.prev = 16;
+          case 17:
+            _context.prev = 17;
             _context.t0 = _context["catch"](0);
             alert(_context.t0);
 
-          case 19:
+          case 20:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 16]]);
+    }, _callee, null, [[0, 17]]);
   }));
 
   return function countryData() {
@@ -13157,7 +13187,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60149" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65343" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

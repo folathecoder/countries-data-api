@@ -56,6 +56,11 @@ body {
   font-weight: 300;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 h1 {
   font-size: 1rem;
   font-weight: 800;
@@ -207,15 +212,15 @@ h2 {
   padding: 1.25rem;
   min-height: 31.25rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }
-@media screen and (min-width: 1200px) {
-  .container__inner > * {
-    flex: 1 16.875rem;
-    justify-self: flex-start;
-    max-width: 17.5rem;
-  }
+.container__inner > * {
+  flex: 1 16.875rem;
+  justify-self: flex-start;
+  max-width: 17.5rem;
+  min-height: 21.875rem;
 }
 
 .card {
@@ -245,6 +250,36 @@ h2 {
   transition: 0.5s;
   background-color: var(--color-600);
   transform: translateY(-0.625rem);
+}
+
+.container__spinner {
+  display: grid;
+  place-items: center;
+  height: 18.75rem;
+  position: fixed;
+  right: 40%;
+}
+@media screen and (min-width: 602px) {
+  .container__spinner {
+    right: 50%;
+  }
+}
+
+.spinner__spin {
+  text-align: center;
+  animation: loader 1s ease-in-out infinite;
+}
+.spinner i {
+  font-size: 3.125rem;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
 }
 
 /*# sourceMappingURL=/main.847ea5f6.css.map */

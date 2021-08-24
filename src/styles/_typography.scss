@@ -1,4 +1,8 @@
 //TODO: ==========>>>> TYPOGRAPHY
+a {
+    text-decoration: none;
+    color: inherit;
+}
 h1 {
     font-size: rem(16);
     font-weight: $weight-300;

@@ -1,0 +1,25 @@
+.container__spinner {
+    display: grid;
+    place-items: center;
+    height: rem(300);
+    position: fixed;
+    right: 40%;
+
+    @include media-query(large-mobile) {
+        right: 50%;
+    }
+}
+.spinner {
+    &__spin {
+        text-align: center;
+        animation: loader 1s ease-in-out infinite ;
+    }
+    i {
+        font-size: rem(50);
+    }
+}
+
+@keyframes loader {
+    0% {transform: rotateZ(0deg);}
+    100% {transform: rotateZ(360deg);}
+}
