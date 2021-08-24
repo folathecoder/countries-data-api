@@ -6,6 +6,9 @@
     max-width: 100%;
     min-height: rem(0);
     box-shadow: $shadow;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
     &__inner {
         max-width: $max-width;

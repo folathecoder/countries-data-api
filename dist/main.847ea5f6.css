@@ -81,6 +81,9 @@ h2 {
   max-width: 100%;
   min-height: 0rem;
   box-shadow: 0rem 0.0625rem 0.3125rem var(--color-400);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 .header__inner {
   max-width: 81.25rem;
@@ -200,13 +203,19 @@ h2 {
 }
 .container__inner {
   max-width: 81.25rem;
-  margin: 0rem auto;
+  margin: 1.25rem auto;
   padding: 1.25rem;
   min-height: 31.25rem;
-  display: grid;
-  gap: 2.8125rem;
-  grid-template-columns: repeat(auto-fill, minmax(15.625rem, 1fr));
-  grid-auto-rows: 1fr;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+@media screen and (min-width: 1200px) {
+  .container__inner > * {
+    flex: 1 16.875rem;
+    justify-self: flex-start;
+    max-width: 17.5rem;
+  }
 }
 
 .card {
@@ -214,6 +223,7 @@ h2 {
   box-shadow: 0rem 0.0625rem 0.3125rem var(--color-400);
   border-radius: 0.3125rem;
   cursor: pointer;
+  margin: 1.25rem;
 }
 .card__image img {
   border-radius: 0.3125rem 0.3125rem 0rem 0rem;

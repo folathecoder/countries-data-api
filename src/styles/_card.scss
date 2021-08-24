@@ -4,6 +4,7 @@
     box-shadow: $shadow;
     border-radius: rem(5);
     cursor: pointer;
+    margin: rem(20);
 
     &__image img {
         border-radius: rem(5) rem(5) rem(0) rem(0);
