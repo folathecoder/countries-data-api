@@ -3,21 +3,33 @@
   --color-dark-200: hsl(207, 26%, 17%);
   --color-dark-300: hsl(0, 0%, 100%);
   --color-dark-400: hsl(200, 15%, 8%);
-  --colorlight-100: hsl(0, 0%, 52%);
-  --colorlight-200: hsl(0, 0%, 98%);
-  --colorlight-300: hsl(0, 0%, 100%);
+  --color-dark-shadow: hsla(0, 0%, 52%, 0);
+  --color-dark-filter: hsl(0, 0%, 100%);
+  --color-dark-hover: hsl(209, 23%, 12%);
+  --color-light-100: hsl(0, 0%, 98%);
+  --color-light-200: hsl(0, 0%, 100%);
+  --color-light-300: hsl(0, 0%, 0%);
+  --color-light-shadow: hsla(0, 0%, 52%, 0.446);
+  --color-light-filter: hsl(0, 0%, 0%);
+  --color-light-hover: hsla(0, 0%, 13%, 0.056);
 }
 
 .dark-theme {
   --color-100: var(--color-dark-100);
   --color-200: var(--color-dark-200);
   --color-300: var(--color-dark-300);
+  --color-400: var(--color-dark-shadow);
+  --color-500: var(--color-dark-filter);
+  --color-600: var(--color-dark-hover);
 }
 
 .light-theme {
   --color-100: var(--color-light-100);
   --color-200: var(--color-light-200);
   --color-300: var(--color-light-300);
+  --color-400: var(--color-light-shadow);
+  --color-500: var(--color-light-filter);
+  --color-600: var(--color-light-hover);
 }
 
 *,
@@ -68,7 +80,7 @@ h2 {
   background-color: var(--color-100);
   max-width: 100%;
   min-height: 0rem;
-  box-shadow: 0rem 0.0625rem 0.3125rem var(--color-200);
+  box-shadow: 0rem 0.0625rem 0.3125rem var(--color-400);
 }
 .header__inner {
   max-width: 81.25rem;
@@ -131,7 +143,7 @@ h2 {
   align-items: center;
   justify-content: space-between;
   border-radius: 0.3125rem;
-  box-shadow: 0rem 0.0625rem 0.3125rem var(--color-200);
+  box-shadow: 0rem 0.0625rem 0.3125rem var(--color-400);
 }
 .search__input {
   width: 85%;
@@ -161,13 +173,13 @@ h2 {
 }
 .filter select {
   background-color: var(--color-100);
-  color: white;
+  color: var(--color-500);
   padding: 1rem 0.625rem;
   margin-top: 1.25rem;
   width: 12.5rem;
   border-radius: 0.3125rem;
   border: none;
-  box-shadow: 0rem 0.0625rem 0.3125rem var(--color-200);
+  box-shadow: 0rem 0.0625rem 0.3125rem var(--color-400);
   cursor: pointer;
 }
 @media screen and (min-width: 786px) {
@@ -199,8 +211,9 @@ h2 {
 
 .card {
   background-color: var(--color-100);
-  box-shadow: 0rem 0.0625rem 0.3125rem var(--color-200);
+  box-shadow: 0rem 0.0625rem 0.3125rem var(--color-400);
   border-radius: 0.3125rem;
+  cursor: pointer;
 }
 .card__image img {
   border-radius: 0.3125rem 0.3125rem 0rem 0rem;
@@ -217,6 +230,11 @@ h2 {
 }
 .card__info span {
   font-weight: 300;
+}
+.card:hover {
+  transition: 0.5s;
+  background-color: var(--color-600);
+  transform: translateY(-0.625rem);
 }
 
 /*# sourceMappingURL=/main.847ea5f6.css.map */

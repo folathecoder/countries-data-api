@@ -3,6 +3,7 @@
     background-color: var(--color-100);
     box-shadow: $shadow;
     border-radius: rem(5);
+    cursor: pointer;
 
     &__image img {
         border-radius: rem(5) rem(5) rem(0) rem(0);
@@ -19,5 +20,11 @@
         span {
             font-weight: $weight-100;
         }
+    }
+
+    &:hover {
+        transition: 0.5s;
+        background-color: var(--color-600);
+        transform: translateY(rem(-10)); 
     }
 }

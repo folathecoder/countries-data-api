@@ -119,8 +119,28 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"src/js/controller.js":[function(require,module,exports) {
 //TODO: ==========>>>> THEME SWITCH
-var darkIcon = document.querySelector('.header-theme-light-icon');
-con;
+var darkIcon = document.querySelector('.header-theme-dark-icon');
+var lightIcon = document.querySelector('.header-theme-light-icon');
+var themeBtn = document.querySelector('.header-theme');
+var body = document.body; // ====> Deactivate Light Mode Icon (Default)
+
+lightIcon.style.display = 'none'; // ====> Target the theme switch button
+
+themeBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (body.classList.contains('dark-theme')) {
+    darkIcon.style.display = 'none';
+    lightIcon.style.display = 'initial';
+    body.classList.remove('dark-theme');
+    body.classList.add('light-theme');
+  } else if (body.classList.contains('light-theme')) {
+    darkIcon.style.display = 'initial';
+    lightIcon.style.display = 'none';
+    body.classList.remove('light-theme');
+    body.classList.add('dark-theme');
+  }
+});
 },{}],"src/js/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -153,7 +173,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60809" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59046" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

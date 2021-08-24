@@ -1,21 +1,35 @@
 //TODO: ==========>>>> COLORS
 :root {
+
+
     //Dark Theme Colors
     --color-dark-100: hsl(209, 23%, 22%);
     --color-dark-200: hsl(207, 26%, 17%);
     --color-dark-300: hsl(0, 0%, 100%);
     --color-dark-400: hsl(200, 15%, 8%);
+    --color-dark-shadow: hsla(0, 0%, 52%, 0);
+    --color-dark-filter: hsl(0, 0%, 100%);
+    --color-dark-hover: hsl(209, 23%, 12%);
 
     //Light Theme Colors
-    --colorlight-100: hsl(0, 0%, 52%);
-    --colorlight-200: hsl(0, 0%, 98%);
-    --colorlight-300: hsl(0, 0%, 100%);
+    --color-light-100: hsl(0, 0%, 98%);
+    // --color-light-100: hsl(0, 0%, 52%);
+    --color-light-200: hsl(0, 0%, 100%);
+    // --color-light-300: hsl(0, 0%, 52%);
+    --color-light-300: hsl(0, 0%, 0%);
+
+    --color-light-shadow: hsla(0, 0%, 52%, 0.446);
+    --color-light-filter: hsl(0, 0%, 0%);
+    --color-light-hover: hsla(0, 0%, 13%, 0.056);
 }
 //===== Dark Theme Class
 .dark-theme {
     --color-100: var(--color-dark-100); //Header bg
     --color-200: var(--color-dark-200); //background
     --color-300: var(--color-dark-300); //font color
+    --color-400: var(--color-dark-shadow);
+    --color-500: var(--color-dark-filter);
+    --color-600: var(--color-dark-hover);
     // --color-400: var(--color-dark-400); //background
 }
 //===== Light Theme Class
@@ -23,4 +37,7 @@
     --color-100: var(--color-light-100);
     --color-200: var(--color-light-200);
     --color-300: var(--color-light-300);
+    --color-400: var(--color-light-shadow);
+    --color-500: var(--color-light-filter);
+    --color-600: var(--color-light-hover);
 }
