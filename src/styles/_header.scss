@@ -128,3 +128,25 @@
         }
     }
 }
+.home__button {
+    align-self: flex-start;
+}
+.home__btn {
+    background-color: var(--color-100);
+    color: inherit;
+    font-size: rem(15);
+    border: none;
+    padding: rem(13) rem(40);
+    cursor: pointer;
+    box-shadow: rem(0) rem(0) rem(6) rgba(0, 0, 0, 0.219);
+
+    &:hover {
+        transition: 0.5s ease-in-out;
+        transform: translateX(rem(-10));
+        background-color: var(--color-600);
+    }
+
+    i {
+        margin-right: rem(10);
+    }
+}

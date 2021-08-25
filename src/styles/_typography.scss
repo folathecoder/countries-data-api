@@ -3,6 +3,11 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+li {
+    list-style: none;
+    color: inherit;
+}
 h1 {
     font-size: rem(16);
     font-weight: $weight-300;
@@ -13,7 +18,16 @@ h1 {
 }
 
 h2 {
-    font-size: rem(16);
+    font-size: rem(17);
+    font-weight: $weight-200;
+
+    @include media-query (tablet) {
+        font-size: rem(18);
+    }
+}
+
+h3 {
+    font-size: rem(17);
     font-weight: $weight-200;
 
     @include media-query (tablet) {

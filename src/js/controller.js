@@ -62,24 +62,6 @@ const countryData = async function() {
 
         //Render Fetch Data to the Homepage
 
-        // const markup = res.map(country => {
-        //     return `
-        //     <div class="card">
-        //     <a href="#${country.alpha3Code}">
-        //         <div class="card__image">
-        //         <img src="${country.flag}" alt="${country.name}" />
-        //         </div>
-        //         <div class="card__title"><h2>${country.name}</h2></div>
-        //         <div class="card__info">
-        //         <p>Population: <span>${country.population}</span></p>
-        //         <p>Region: <span>${country.region}</span></p>
-        //         <p>Capital: <span>${country.capital}</span></p>
-        //         </div>
-        //     </a>
-        //    </div>
-        //     `
-        // }).join('');
-
         const markup = res.map(country => {
             return `
             <div class="card">

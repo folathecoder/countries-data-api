@@ -1,7 +1,6 @@
 //TODO: ==========>>>> COLORS
 :root {
 
-
     //Dark Theme Colors
     --color-dark-100: hsl(209, 23%, 22%);
     --color-dark-200: hsl(207, 26%, 17%);
@@ -13,11 +12,8 @@
 
     //Light Theme Colors
     --color-light-100: hsl(0, 0%, 98%);
-    // --color-light-100: hsl(0, 0%, 52%);
     --color-light-200: hsl(0, 0%, 100%);
-    // --color-light-300: hsl(0, 0%, 52%);
     --color-light-300: hsl(0, 0%, 0%);
-
     --color-light-shadow: hsla(0, 0%, 52%, 0.446);
     --color-light-filter: hsl(0, 0%, 0%);
     --color-light-hover: hsla(0, 0%, 13%, 0.056);
@@ -30,7 +26,6 @@
     --color-400: var(--color-dark-shadow);
     --color-500: var(--color-dark-filter);
     --color-600: var(--color-dark-hover);
-    // --color-400: var(--color-dark-400); //background
 }
 //===== Light Theme Class
 .light-theme {

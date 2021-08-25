@@ -61,6 +61,11 @@ a {
   color: inherit;
 }
 
+li {
+  list-style: none;
+  color: inherit;
+}
+
 h1 {
   font-size: 1rem;
   font-weight: 800;
@@ -72,11 +77,21 @@ h1 {
 }
 
 h2 {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 600;
 }
 @media screen and (min-width: 992px) {
   h2 {
+    font-size: 1.125rem;
+  }
+}
+
+h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+@media screen and (min-width: 992px) {
+  h3 {
     font-size: 1.125rem;
   }
 }
@@ -202,6 +217,28 @@ h2 {
   cursor: pointer;
 }
 
+.home__button {
+  align-self: flex-start;
+}
+
+.home__btn {
+  background-color: var(--color-100);
+  color: inherit;
+  font-size: 0.9375rem;
+  border: none;
+  padding: 0.8125rem 2.5rem;
+  cursor: pointer;
+  box-shadow: 0rem 0rem 0.375rem rgba(0, 0, 0, 0.219);
+}
+.home__btn:hover {
+  transition: 0.5s ease-in-out;
+  transform: translateX(-0.625rem);
+  background-color: var(--color-600);
+}
+.home__btn i {
+  margin-right: 0.625rem;
+}
+
 .container {
   max-width: 100%;
   min-height: 0rem;
@@ -215,12 +252,74 @@ h2 {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  display: none;
 }
 .container__inner > * {
   flex: 1 16.875rem;
   justify-self: flex-start;
   max-width: 17.5rem;
   min-height: 21.875rem;
+}
+.container__details {
+  max-width: 81.25rem;
+  min-height: 28.125rem;
+  margin: 0rem auto;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (min-width: 992px) {
+  .container__details {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+.container__details > * {
+  flex: 1;
+  padding: 1.25rem;
+}
+
+.country__info h2 {
+  font-size: 1.875rem;
+  font-weight: 800;
+}
+@media screen and (min-width: 1200px) {
+  .country__info {
+    margin-left: 6.25rem;
+  }
+}
+.country__details {
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (min-width: 992px) {
+  .country__details {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.country__details > * {
+  margin: 0.625rem 0rem;
+}
+.country__details li {
+  font-weight: 600;
+  line-height: 1.875rem;
+}
+.country__details li span {
+  font-weight: 300;
+}
+.country__header {
+  margin: 1.25rem 0rem;
+}
+.country__border {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.9375rem 0rem;
+}
+.country__border > * {
+  background-color: var(--color-100);
+  box-shadow: var(--color-400);
+  padding: 0.3125rem 0.625rem;
+  margin: 0.3125rem 0.625rem 0.3125rem 0rem;
 }
 
 .card {
@@ -258,6 +357,7 @@ h2 {
   height: 18.75rem;
   position: fixed;
   right: 40%;
+  display: none;
 }
 @media screen and (min-width: 602px) {
   .container__spinner {

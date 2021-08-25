@@ -13105,23 +13105,6 @@ var countryData = /*#__PURE__*/function () {
             data = _context.sent;
             res = data;
             console.log(res); //Render Fetch Data to the Homepage
-            // const markup = res.map(country => {
-            //     return `
-            //     <div class="card">
-            //     <a href="#${country.alpha3Code}">
-            //         <div class="card__image">
-            //         <img src="${country.flag}" alt="${country.name}" />
-            //         </div>
-            //         <div class="card__title"><h2>${country.name}</h2></div>
-            //         <div class="card__info">
-            //         <p>Population: <span>${country.population}</span></p>
-            //         <p>Region: <span>${country.region}</span></p>
-            //         <p>Capital: <span>${country.capital}</span></p>
-            //         </div>
-            //     </a>
-            //    </div>
-            //     `
-            // }).join('');
 
             markup = res.map(function (country) {
               return "\n            <div class=\"card\">\n            <a href=\"#".concat(country.alpha3Code, "\">\n                <div class=\"card__image\">\n                <img src=\"").concat(country.flag, "\" alt=\"").concat(country.name, "\" />\n                </div>\n                <div class=\"card__title\"><h2>").concat(country.name, "</h2></div>\n                <div class=\"card__info\">\n                <p>Population: <span>").concat(country.population, "</span></p>\n                <p>Region: <span>").concat(country.region, "</span></p>\n                <p>Capital: <span>").concat(country.capital, "</span></p>\n                </div>\n            </a>\n           </div>\n            ");
@@ -13187,7 +13170,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65343" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52673" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
