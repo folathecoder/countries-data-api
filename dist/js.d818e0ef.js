@@ -13035,11 +13035,22 @@ try {
 }
 
 },{}],"src/js/controller.js":[function(require,module,exports) {
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//TODO: ==========>>>> THEME SWITCH
 var container = document.querySelector('.container__inner');
 var spinnerContainer = document.querySelector('.container__spinner');
 var mainContainer = document.querySelector('.container');
@@ -13047,7 +13058,12 @@ var darkIcon = document.querySelector('.header-theme-dark-icon');
 var lightIcon = document.querySelector('.header-theme-light-icon');
 var themeBtn = document.querySelector('.header-theme');
 var body = document.body;
-var search = document.querySelector('.search__input'); // ====> Deactivate Light Mode Icon (Default)
+var search = document.querySelector('.search__input');
+var home = document.querySelector('.home__button');
+var searchContainer = document.querySelector('.search');
+var filterContainer = document.querySelector('.filter');
+var detailsContainer = document.querySelector('.container__details'); //TODO: ==========>>>> THEME SWITCH
+// ====> Deactivate Light Mode Icon (Default)
 
 lightIcon.style.display = 'none'; // ====> Target the theme switch button
 
@@ -13071,8 +13087,19 @@ var spinner = function spinner(parentElement) {
   var markup = "\n    <div class=\"container__spinner\">\n        <div class=\"spinner\">\n        <div class=\"spinner__spin\">\n            <i class=\"fas fa-spinner\"></i>\n        </div>\n        </div>\n    </div>\n    ";
   parentElement.innerHTML = "";
   parentElement.insertAdjacentHTML('afterbegin', markup);
-}; //TODO: ==========>>>> FETCH ALL COUNTRY DATA
+}; // detailsContainer.style.display = 'none';
 
+
+home.style.display = 'none'; //TODO: HOMEPAGE STATE
+
+home.addEventListener('click', function (e) {
+  //* ====> Hide the homepage display
+  home.style.display = 'none';
+  container.innerHTML = "";
+  container.style.display = 'initial';
+  searchContainer.style.display = 'initial';
+  filterContainer.style.display = 'initial';
+}); //TODO: ==========>>>> FETCH ALL COUNTRY DATA
 
 var countryData = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
@@ -13134,50 +13161,79 @@ countryData(); //TODO: ==========>>>> FETCH COUNTRY DETAIL
 
 var countryDetail = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-    var response, data, markup;
+    var id, response, data, _data$currencies, currency, currencyCode, currencyName, currencySymbol, _data$languages, language, langName, markup;
+
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
-            _context2.next = 3;
-            return fetch('https://restcountries.eu/rest/v2/alpha/AFG');
+            //* ====> Hide the homepage display
+            container.style.display = 'none';
+            searchContainer.style.display = 'none';
+            filterContainer.style.display = 'none';
+            home.style.display = 'initial'; //* ====> Extract the hash from href
 
-          case 3:
+            id = window.location.hash.slice(1);
+
+            if (id) {
+              _context2.next = 8;
+              break;
+            }
+
+            return _context2.abrupt("return");
+
+          case 8:
+            //* ====> Insert loading Spinner
+            spinner(mainContainer); //* ====> Fetch individual country details
+
+            _context2.next = 11;
+            return fetch("https://restcountries.eu/rest/v2/alpha/".concat(id));
+
+          case 11:
             response = _context2.sent;
 
             if (response.ok) {
-              _context2.next = 6;
+              _context2.next = 14;
               break;
             }
 
             throw new Error('Could not fetch data from the API!');
 
-          case 6:
-            _context2.next = 8;
+          case 14:
+            _context2.next = 16;
             return response.json();
 
-          case 8:
+          case 16:
             data = _context2.sent;
-            console.log(response, data); //Render to the frontend
+            console.log(data); //* ====> Destructure Content
+            //[1] ====> Currencies
 
-            markup = "\n        <div class=\"container__details\">\n\n        <div class=\"country__image\">\n          <div>\n            <img src=\"".concat(data.flag, "\" alt=\"").concat(data.name, "\">\n          </div>\n        </div>\n\n        <div class=\"country__info\">\n          <h2>").concat(data.name, "</h2>\n          <div class=\"country__details\">\n            <ul>\n              <li>Native Name: <span>Unknown</span></li>\n              <li>Population: <span>").concat(data.population, "</span></li>\n              <li>Region: <span>Unknown</span></li>\n              <li>Sub Region: <span>Unknown</span></li>\n              <li>Capital: <span>Unknown</span></li>\n            </ul>\n            <ul>\n              <li>Top Level Domain: <span>Unknown</span></li>\n              <li>Currencies: <span>Unknown</span></li>\n              <li>Languages: <span>Unknown</span></li>\n            </ul>\n          </div>\n          <div class =\"country__header\">\n            <h3>Border Countries</h3>\n          </div>\n          <ul class=\"country__border\">\n            <li>France</li>\n            <li>Belgium</li>\n            <li>Netherlands</li>\n            <li>France</li>\n            <li>Belgium</li>\n            <li>Netherlands</li>\n          </ul>\n        </div>\n        </div>\n        ");
+            _data$currencies = _slicedToArray(data.currencies, 1), currency = _data$currencies[0];
+            currencyCode = currency.code, currencyName = currency.name, currencySymbol = currency.symbol; //[2] ====> Languages
+
+            _data$languages = _slicedToArray(data.languages, 1), language = _data$languages[0];
+            langName = language.name; //* ====> Render to the frontend
+
+            markup = "\n        <div class=\"container__details\">\n\n        <div class=\"country__image\">\n          <div>\n            <img src=\"".concat(data.flag, "\" alt=\"").concat(data.name, "\">\n          </div>\n        </div>\n\n        <div class=\"country__info\">\n          <h2>").concat(data.name, "</h2>\n          <div class=\"country__details\">\n            <ul>\n              <li>Native Name: <span>").concat(data.nativeName, "</span></li>\n              <li>Population: <span>").concat(data.population, "</span></li>\n              <li>Region: <span>").concat(data.region, "</span></li>\n              <li>Sub Region: <span>").concat(data.subregion, "</span></li>\n              <li>Capital: <span>").concat(data.capital, "</span></li>\n            </ul>\n            <ul>\n              <li>Top Level Domain: <span>").concat(data.topLevelDomain, "</span></li>\n              <li>Currencies: <span>").concat(currencyName, " (").concat(currencySymbol, ")</span></li>\n              <li>Languages: <span>").concat(langName, "</span></li>\n            </ul>\n          </div>\n          <div class =\"country__header\">\n            <h3>Border Countries</h3>\n          </div>\n          <ul class=\"country__border\">\n            ").concat(data.borders.map(function (border) {
+              return "\n                <li><a href=\"#".concat(border, "\">").concat(border, "</a></li>\n              ");
+            }).join(''), "\n          </ul>\n        </div>\n        </div>\n        ");
             mainContainer.innerHTML = "";
             mainContainer.insertAdjacentHTML('afterbegin', markup);
-            _context2.next = 18;
+            _context2.next = 30;
             break;
 
-          case 15:
-            _context2.prev = 15;
+          case 27:
+            _context2.prev = 27;
             _context2.t0 = _context2["catch"](0);
             alert(_context2.t0);
 
-          case 18:
+          case 30:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 15]]);
+    }, _callee2, null, [[0, 27]]);
   }));
 
   return function countryDetail() {
@@ -13185,7 +13241,7 @@ var countryDetail = /*#__PURE__*/function () {
   };
 }();
 
-countryDetail();
+window.addEventListener('hashchange', countryDetail);
 },{}],"src/js/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -13222,7 +13278,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59051" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58108" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

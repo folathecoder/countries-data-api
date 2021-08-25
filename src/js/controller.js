@@ -1,4 +1,4 @@
-//TODO: ==========>>>> THEME SWITCH
+
 const container = document.querySelector('.container__inner');
 const spinnerContainer = document.querySelector('.container__spinner');
 const mainContainer = document.querySelector('.container');
@@ -7,6 +7,14 @@ const lightIcon = document.querySelector('.header-theme-light-icon');
 const themeBtn = document.querySelector('.header-theme');
 const body = document.body;
 const search = document.querySelector('.search__input');
+const home = document.querySelector('.home__button');
+const searchContainer = document.querySelector('.search');
+const filterContainer = document.querySelector('.filter');
+const detailsContainer = document.querySelector('.container__details');
+
+
+
+//TODO: ==========>>>> THEME SWITCH
 
 // ====> Deactivate Light Mode Icon (Default)
 lightIcon.style.display = 'none';
@@ -43,6 +51,19 @@ const spinner = function(parentElement) {
     parentElement.innerHTML = "";
     parentElement.insertAdjacentHTML('afterbegin', markup);
 }
+
+// detailsContainer.style.display = 'none';
+home.style.display = 'none';
+
+//TODO: HOMEPAGE STATE
+home.addEventListener('click', function(e) {
+    //* ====> Hide the homepage display
+    home.style.display = 'none';
+    container.innerHTML = "";
+    container.style.display ='initial';
+    searchContainer.style.display ='initial';
+    filterContainer.style.display ='initial';
+})
 
 //TODO: ==========>>>> FETCH ALL COUNTRY DATA
 const countryData = async function() {
@@ -90,17 +111,42 @@ countryData();
 
 //TODO: ==========>>>> FETCH COUNTRY DETAIL
 
+
 const countryDetail = async function() {
     try {
-        //Fetch individual country details
-        const response = await fetch('https://restcountries.eu/rest/v2/alpha/AFG');
 
-        //Throw a custom error
+        //* ====> Hide the homepage display
+        container.style.display ='none';
+        searchContainer.style.display ='none';
+        filterContainer.style.display ='none';
+
+        home.style.display = 'initial';
+
+        //* ====> Extract the hash from href
+        const id = window.location.hash.slice(1);
+        if (!id) return;
+
+        //* ====> Insert loading Spinner
+        spinner(mainContainer);
+
+        //* ====> Fetch individual country details
+        const response = await fetch(`https://restcountries.eu/rest/v2/alpha/${id}`);
+
+        //* ====> Throw a custom error
         if (!response.ok) throw new Error('Could not fetch data from the API!')
         const data = await response.json();
-        console.log(response, data);
+        console.log(data);
 
-        //Render to the frontend
+        //* ====> Destructure Content
+        //[1] ====> Currencies
+        const [currency] = data.currencies;
+        const {code:currencyCode, name: currencyName, symbol: currencySymbol} = currency;
+
+        //[2] ====> Languages
+        const [language] = data.languages;
+        const {name: langName} = language;
+
+        //* ====> Render to the frontend
         const markup = `
         <div class="container__details">
 
@@ -114,28 +160,27 @@ const countryDetail = async function() {
           <h2>${data.name}</h2>
           <div class="country__details">
             <ul>
-              <li>Native Name: <span>Unknown</span></li>
+              <li>Native Name: <span>${data.nativeName}</span></li>
               <li>Population: <span>${data.population}</span></li>
-              <li>Region: <span>Unknown</span></li>
-              <li>Sub Region: <span>Unknown</span></li>
-              <li>Capital: <span>Unknown</span></li>
+              <li>Region: <span>${data.region}</span></li>
+              <li>Sub Region: <span>${data.subregion}</span></li>
+              <li>Capital: <span>${data.capital}</span></li>
             </ul>
             <ul>
-              <li>Top Level Domain: <span>Unknown</span></li>
-              <li>Currencies: <span>Unknown</span></li>
-              <li>Languages: <span>Unknown</span></li>
+              <li>Top Level Domain: <span>${data.topLevelDomain}</span></li>
+              <li>Currencies: <span>${currencyName} (${currencySymbol})</span></li>
+              <li>Languages: <span>${langName}</span></li>
             </ul>
           </div>
           <div class ="country__header">
             <h3>Border Countries</h3>
           </div>
           <ul class="country__border">
-            <li>France</li>
-            <li>Belgium</li>
-            <li>Netherlands</li>
-            <li>France</li>
-            <li>Belgium</li>
-            <li>Netherlands</li>
+            ${data.borders.map(border => {
+              return `
+                <li><a href="#${border}">${border}</a></li>
+              `
+            }).join('')}
           </ul>
         </div>
         </div>
@@ -143,10 +188,9 @@ const countryDetail = async function() {
         mainContainer.innerHTML = "";
         mainContainer.insertAdjacentHTML('afterbegin', markup);
 
-        
     } catch (error) {
         alert(error);
     }
 }
 
-countryDetail();
+window.addEventListener('hashchange', countryDetail);

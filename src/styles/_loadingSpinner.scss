@@ -4,7 +4,6 @@
     height: rem(300);
     position: fixed;
     right: 40%;
-    display: none;//////////
 
     @include media-query(large-mobile) {
         right: 50%;

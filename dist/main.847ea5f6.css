@@ -252,7 +252,6 @@ h3 {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  display: none;
 }
 .container__inner > * {
   flex: 1 16.875rem;
@@ -321,6 +320,10 @@ h3 {
   padding: 0.3125rem 0.625rem;
   margin: 0.3125rem 0.625rem 0.3125rem 0rem;
 }
+.country__border > *:hover {
+  transition: 0.5s ease-in-out;
+  background-color: var(--color-600);
+}
 
 .card {
   background-color: var(--color-100);
@@ -357,7 +360,6 @@ h3 {
   height: 18.75rem;
   position: fixed;
   right: 40%;
-  display: none;
 }
 @media screen and (min-width: 602px) {
   .container__spinner {

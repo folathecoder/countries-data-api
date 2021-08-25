@@ -11,7 +11,7 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        display: none;
+        // display: none;
 
         & > * {
             flex: 1 rem(270);
@@ -92,6 +92,11 @@
             box-shadow: var(--color-400);
             padding: rem(5) rem(10);
             margin: rem(5) rem(10) rem(5) rem(0);
+
+            &:hover {
+                transition: 0.5s ease-in-out;
+                background-color: var(--color-600);
+            }
         }
     }
 }
