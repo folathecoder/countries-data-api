@@ -13051,19 +13051,21 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//TODO ====> DECLARE ALL REQUIRED VARIABLES
 var container = document.querySelector('.container__inner');
 var spinnerContainer = document.querySelector('.container__spinner');
 var mainContainer = document.querySelector('.container');
+var searchContainer = document.querySelector('.search');
+var filterContainer = document.querySelector('.filter');
+var detailsContainer = document.querySelector('.container__details');
 var darkIcon = document.querySelector('.header-theme-dark-icon');
 var lightIcon = document.querySelector('.header-theme-light-icon');
 var themeBtn = document.querySelector('.header-theme');
 var body = document.body;
 var search = document.querySelector('.search__input');
+var cards = document.querySelectorAll('.card');
 var home = document.querySelector('.home__button');
-var searchContainer = document.querySelector('.search');
-var filterContainer = document.querySelector('.filter');
-var detailsContainer = document.querySelector('.container__details'); //Region Filter
-
+var allRegions = document.querySelector('#region-all');
 var africa = document.querySelector('#region-africa');
 var america = document.querySelector('#region-america');
 var asia = document.querySelector('#region-asia');
@@ -13071,41 +13073,45 @@ var europe = document.querySelector('#region-europe');
 var oceania = document.querySelector('#region-oceania'); //TODO: ==========>>>> THEME SWITCH
 // ====> Deactivate Light Mode Icon (Default)
 
-lightIcon.style.display = 'none'; // ====> Target the theme switch button
+lightIcon.style.display = 'none';
+var darkMode = localStorage.getItem('darkMode');
 
+var enableDarkMode = function enableDarkMode() {
+  darkIcon.style.display = 'none';
+  lightIcon.style.display = 'initial';
+  body.classList.remove('dark-theme');
+  body.classList.add('light-theme');
+  localStorage.setItem("darkMode", "enabled");
+};
+
+var disableDarkMode = function disableDarkMode() {
+  darkIcon.style.display = 'initial';
+  lightIcon.style.display = 'none';
+  body.classList.remove('light-theme');
+  body.classList.add('dark-theme');
+  localStorage.setItem("darkMode", null);
+};
+
+if (darkMode === "enabled") enableDarkMode();
 themeBtn.addEventListener('click', function (e) {
   e.preventDefault();
+  darkMode = localStorage.getItem("darkMode");
 
-  if (body.classList.contains('dark-theme')) {
-    darkIcon.style.display = 'none';
-    lightIcon.style.display = 'initial';
-    body.classList.remove('dark-theme');
-    body.classList.add('light-theme');
-  } else if (body.classList.contains('light-theme')) {
-    darkIcon.style.display = 'initial';
-    lightIcon.style.display = 'none';
-    body.classList.remove('light-theme');
-    body.classList.add('dark-theme');
+  if (darkMode !== "enabled") {
+    enableDarkMode();
+  } else {
+    disableDarkMode();
   }
-}); //TODO: ==========>>>> PRELOADER SPINNER 
+}); //TODO: ==========>>>> HIDE HOME BACK BUTTON ON LOAD
+
+home.style.display = 'none'; //TODO: ==========>>>> PRELOADER SPINNER 
 
 var spinner = function spinner(parentElement) {
   var markup = "\n    <div class=\"container__spinner\">\n        <div class=\"spinner\">\n        <div class=\"spinner__spin\">\n            <i class=\"fas fa-spinner\"></i>\n        </div>\n        </div>\n    </div>\n    ";
   parentElement.innerHTML = "";
   parentElement.insertAdjacentHTML('afterbegin', markup);
-}; // detailsContainer.style.display = 'none';
+}; //TODO: ==========>>>> FETCH ALL COUNTRY DATA
 
-
-home.style.display = 'none'; //TODO: HOMEPAGE STATE
-
-home.addEventListener('click', function (e) {
-  //* ====> Hide the homepage display
-  home.style.display = 'none';
-  container.innerHTML = "";
-  container.style.display = 'initial';
-  searchContainer.style.display = 'initial';
-  filterContainer.style.display = 'initial';
-}); //TODO: ==========>>>> FETCH ALL COUNTRY DATA
 
 var countryData = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
@@ -13136,26 +13142,26 @@ var countryData = /*#__PURE__*/function () {
 
           case 9:
             data = _context.sent;
-            //Render Fetch Data to the Homepage
+            //* ====> Render Fetch Data to the Homepage
             markup = data.map(function (country) {
               return "\n            <div class=\"card\">\n            <a href=\"#".concat(country.alpha3Code, "\">\n                <div class=\"card__image\">\n                <img src=\"").concat(country.flag, "\" alt=\"").concat(country.name, "\" />\n                </div>\n                <div class=\"card__title\"><h2 class=\"country-name\">").concat(country.name, "</h2></div>\n                <div class=\"card__info\">\n                <p>Population: <span>").concat(country.population, "</span></p>\n                <p>Region: <span class=\"country-region\">").concat(country.region, "</span></p>\n                <p>Capital: <span>").concat(country.capital, "</span></p>\n                </div>\n            </a>\n           </div>\n            ");
-            }).join('');
-            container.innerHTML = "";
+            }).join(''); // container.innerHTML = "";
+
             container.insertAdjacentHTML('afterbegin', markup);
-            _context.next = 18;
+            _context.next = 17;
             break;
 
-          case 15:
-            _context.prev = 15;
+          case 14:
+            _context.prev = 14;
             _context.t0 = _context["catch"](0);
             alert(_context.t0);
 
-          case 18:
+          case 17:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 15]]);
+    }, _callee, null, [[0, 14]]);
   }));
 
   return function countryData() {
@@ -13178,21 +13184,7 @@ search.addEventListener('input', function (e) {
       country.closest('.card').style.display = 'none';
     }
   });
-}); // const regionFilter = function(region) {
-//   region.addEventListener('input', function(e) {
-//     const { value } = e.target;
-//     console.log(value);
-//     // const countryName = document.querySelectorAll('.country-name');
-//   //   countryName.forEach(country => {
-//   //     console.log(country.textContent);   
-//   //     if((country.textContent.toLowerCase().includes(value.toLowerCase()))) {
-//   //       country.closest('.card').style.display = 'block';
-//   //     } else {
-//   //       country.closest('.card').style.display = 'none';
-//   //     }
-//   //   })
-//   // })
-// }
+}); //TODO: ==========>>>> REGION FILTER 
 
 var filterRegion = function filterRegion(region) {
   region.addEventListener('click', function (e) {
@@ -13207,11 +13199,18 @@ var filterRegion = function filterRegion(region) {
   });
 };
 
-filterRegion(africa);
-filterRegion(america);
-filterRegion(asia);
-filterRegion(europe);
-filterRegion(oceania); //TODO: ==========>>>> FETCH COUNTRY DETAIL
+filterRegion(africa); //Filter African Countries
+
+filterRegion(america); //Filter American Countries
+
+filterRegion(asia); //Filter Asian Countries
+
+filterRegion(europe); //Filter European Countries
+
+filterRegion(oceania); //Filter Oceanian Countries
+
+allRegions.addEventListener('click', countryData); //Show all Countries
+//TODO: ==========>>>> FETCH COUNTRY DETAIL
 
 var countryDetail = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
@@ -13223,7 +13222,11 @@ var countryDetail = /*#__PURE__*/function () {
           case 0:
             _context2.prev = 0;
             //* ====> Hide the homepage display
-            container.style.display = 'none';
+            // container.style.display ='none';
+            // container.innerHTML = "";
+            // cards.forEach(card => {
+            //   card.style.display = 'none';
+            // })
             searchContainer.style.display = 'none';
             filterContainer.style.display = 'none';
             home.style.display = 'initial'; //* ====> Extract the hash from href
@@ -13231,38 +13234,37 @@ var countryDetail = /*#__PURE__*/function () {
             id = window.location.hash.slice(1);
 
             if (id) {
-              _context2.next = 8;
+              _context2.next = 7;
               break;
             }
 
             return _context2.abrupt("return");
 
-          case 8:
+          case 7:
             //* ====> Insert loading Spinner
             spinner(mainContainer); //* ====> Fetch individual country details
 
-            _context2.next = 11;
+            _context2.next = 10;
             return fetch("https://restcountries.eu/rest/v2/alpha/".concat(id));
 
-          case 11:
+          case 10:
             response = _context2.sent;
 
             if (response.ok) {
-              _context2.next = 14;
+              _context2.next = 13;
               break;
             }
 
             throw new Error('Could not fetch data from the API!');
 
-          case 14:
-            _context2.next = 16;
+          case 13:
+            _context2.next = 15;
             return response.json();
 
-          case 16:
+          case 15:
             data = _context2.sent;
-            console.log(data); //* ====> Destructure Content
+            //* ====> Destructure Content
             //[1] ====> Currencies
-
             _data$currencies = _slicedToArray(data.currencies, 1), currency = _data$currencies[0];
             currencyCode = currency.code, currencyName = currency.name, currencySymbol = currency.symbol; //[2] ====> Languages
 
@@ -13271,23 +13273,23 @@ var countryDetail = /*#__PURE__*/function () {
 
             markup = "\n        <div class=\"container__details\">\n\n        <div class=\"country__image\">\n          <div>\n            <img src=\"".concat(data.flag, "\" alt=\"").concat(data.name, "\">\n          </div>\n        </div>\n\n        <div class=\"country__info\">\n          <h2>").concat(data.name, "</h2>\n          <div class=\"country__details\">\n            <ul>\n              <li>Native Name: <span>").concat(data.nativeName, "</span></li>\n              <li>Population: <span>").concat(data.population, "</span></li>\n              <li>Region: <span>").concat(data.region, "</span></li>\n              <li>Sub Region: <span>").concat(data.subregion, "</span></li>\n              <li>Capital: <span>").concat(data.capital, "</span></li>\n            </ul>\n            <ul>\n              <li>Top Level Domain: <span>").concat(data.topLevelDomain, "</span></li>\n              <li>Currencies: <span>").concat(currencyName, " (").concat(currencySymbol, ")</span></li>\n              <li>Languages: <span>").concat(langName, "</span></li>\n            </ul>\n          </div>\n          <div class =\"country__header\">\n            <h3>Border Countries</h3>\n          </div>\n          <ul class=\"country__border\">\n            ").concat(data.borders.map(function (border) {
               return "\n                <li><a href=\"#".concat(border, "\">").concat(border, "</a></li>\n              ");
-            }).join(''), "\n          </ul>\n        </div>\n        </div>\n        ");
-            mainContainer.innerHTML = "";
+            }).join(''), "\n          </ul>\n        </div>\n        </div>\n        "); // mainContainer.innerHTML = "";
+
             mainContainer.insertAdjacentHTML('afterbegin', markup);
-            _context2.next = 30;
+            _context2.next = 27;
             break;
 
-          case 27:
-            _context2.prev = 27;
+          case 24:
+            _context2.prev = 24;
             _context2.t0 = _context2["catch"](0);
             alert(_context2.t0);
 
-          case 30:
+          case 27:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 27]]);
+    }, _callee2, null, [[0, 24]]);
   }));
 
   return function countryDetail() {
@@ -13295,7 +13297,17 @@ var countryDetail = /*#__PURE__*/function () {
   };
 }();
 
-window.addEventListener('hashchange', countryDetail);
+window.addEventListener('hashchange', countryDetail); //TODO: HOMEPAGE STATE
+// const homeRender = async function() {
+//   container.style.display ='initial';
+//   searchContainer.style.display ='initial';
+//   filterContainer.style.display = 'initial';
+//   home.style.display = 'none';
+//   // detailsContainer.style.display = 'none';
+// }
+// home.addEventListener('click', function(e) {
+//   homeRender();
+// })
 },{}],"src/js/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -13332,7 +13344,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53940" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49677" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
