@@ -249,7 +249,6 @@ h3 {
   padding: 1.25rem;
   min-height: 31.25rem;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }

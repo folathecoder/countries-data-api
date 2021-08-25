@@ -13,6 +13,14 @@ const filterContainer = document.querySelector('.filter');
 const detailsContainer = document.querySelector('.container__details');
 
 
+//Region Filter
+const africa = document.querySelector('#region-africa');
+const america = document.querySelector('#region-america');
+const asia = document.querySelector('#region-asia');
+const europe = document.querySelector('#region-europe');
+const oceania = document.querySelector('#region-oceania');
+
+
 
 //TODO: ==========>>>> THEME SWITCH
 
@@ -87,10 +95,10 @@ const countryData = async function() {
                 <div class="card__image">
                 <img src="${country.flag}" alt="${country.name}" />
                 </div>
-                <div class="card__title"><h2>${country.name}</h2></div>
+                <div class="card__title"><h2 class="country-name">${country.name}</h2></div>
                 <div class="card__info">
                 <p>Population: <span>${country.population}</span></p>
-                <p>Region: <span>${country.region}</span></p>
+                <p>Region: <span class="country-region">${country.region}</span></p>
                 <p>Capital: <span>${country.capital}</span></p>
                 </div>
             </a>
@@ -107,6 +115,72 @@ const countryData = async function() {
 }
 
 countryData();
+
+//TODO: ==========>>>> SEARCH FILTER 
+search.addEventListener('input', function(e) {
+  const { value } = e.target;
+  console.log(value);
+
+  const countryName = document.querySelectorAll('.country-name');
+
+  countryName.forEach(country => {
+    console.log(country.textContent);   
+    
+    if((country.textContent.toLowerCase().includes(value.toLowerCase()))) {
+      country.closest('.card').style.display = 'block';
+    } else {
+      country.closest('.card').style.display = 'none';
+    }
+  })
+
+})
+
+
+
+
+
+// const regionFilter = function(region) {
+//   region.addEventListener('input', function(e) {
+//     const { value } = e.target;
+//     console.log(value);
+  
+//     // const countryName = document.querySelectorAll('.country-name');
+  
+//   //   countryName.forEach(country => {
+//   //     console.log(country.textContent);   
+      
+//   //     if((country.textContent.toLowerCase().includes(value.toLowerCase()))) {
+//   //       country.closest('.card').style.display = 'block';
+//   //     } else {
+//   //       country.closest('.card').style.display = 'none';
+//   //     }
+//   //   })
+  
+//   // })
+// }
+
+const filterRegion = function(region) {
+
+  region.addEventListener('click', function(e) {
+
+    const regions = document.querySelectorAll('.country-region');
+  
+    regions.forEach(region => {
+      if(region.textContent === e.target.textContent) {
+        region.closest('.card').style.display = 'block';
+      } else {
+        region.closest('.card').style.display = 'none';
+      }
+    })
+  })
+}
+
+filterRegion(africa);
+filterRegion(america);
+filterRegion(asia);
+filterRegion(europe);
+filterRegion(oceania);
+
 
 
 //TODO: ==========>>>> FETCH COUNTRY DETAIL

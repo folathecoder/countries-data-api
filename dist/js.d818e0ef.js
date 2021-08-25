@@ -13062,7 +13062,13 @@ var search = document.querySelector('.search__input');
 var home = document.querySelector('.home__button');
 var searchContainer = document.querySelector('.search');
 var filterContainer = document.querySelector('.filter');
-var detailsContainer = document.querySelector('.container__details'); //TODO: ==========>>>> THEME SWITCH
+var detailsContainer = document.querySelector('.container__details'); //Region Filter
+
+var africa = document.querySelector('#region-africa');
+var america = document.querySelector('#region-america');
+var asia = document.querySelector('#region-asia');
+var europe = document.querySelector('#region-europe');
+var oceania = document.querySelector('#region-oceania'); //TODO: ==========>>>> THEME SWITCH
 // ====> Deactivate Light Mode Icon (Default)
 
 lightIcon.style.display = 'none'; // ====> Target the theme switch button
@@ -13132,7 +13138,7 @@ var countryData = /*#__PURE__*/function () {
             data = _context.sent;
             //Render Fetch Data to the Homepage
             markup = data.map(function (country) {
-              return "\n            <div class=\"card\">\n            <a href=\"#".concat(country.alpha3Code, "\">\n                <div class=\"card__image\">\n                <img src=\"").concat(country.flag, "\" alt=\"").concat(country.name, "\" />\n                </div>\n                <div class=\"card__title\"><h2>").concat(country.name, "</h2></div>\n                <div class=\"card__info\">\n                <p>Population: <span>").concat(country.population, "</span></p>\n                <p>Region: <span>").concat(country.region, "</span></p>\n                <p>Capital: <span>").concat(country.capital, "</span></p>\n                </div>\n            </a>\n           </div>\n            ");
+              return "\n            <div class=\"card\">\n            <a href=\"#".concat(country.alpha3Code, "\">\n                <div class=\"card__image\">\n                <img src=\"").concat(country.flag, "\" alt=\"").concat(country.name, "\" />\n                </div>\n                <div class=\"card__title\"><h2 class=\"country-name\">").concat(country.name, "</h2></div>\n                <div class=\"card__info\">\n                <p>Population: <span>").concat(country.population, "</span></p>\n                <p>Region: <span class=\"country-region\">").concat(country.region, "</span></p>\n                <p>Capital: <span>").concat(country.capital, "</span></p>\n                </div>\n            </a>\n           </div>\n            ");
             }).join('');
             container.innerHTML = "";
             container.insertAdjacentHTML('afterbegin', markup);
@@ -13157,7 +13163,55 @@ var countryData = /*#__PURE__*/function () {
   };
 }();
 
-countryData(); //TODO: ==========>>>> FETCH COUNTRY DETAIL
+countryData(); //TODO: ==========>>>> SEARCH FILTER 
+
+search.addEventListener('input', function (e) {
+  var value = e.target.value;
+  console.log(value);
+  var countryName = document.querySelectorAll('.country-name');
+  countryName.forEach(function (country) {
+    console.log(country.textContent);
+
+    if (country.textContent.toLowerCase().includes(value.toLowerCase())) {
+      country.closest('.card').style.display = 'block';
+    } else {
+      country.closest('.card').style.display = 'none';
+    }
+  });
+}); // const regionFilter = function(region) {
+//   region.addEventListener('input', function(e) {
+//     const { value } = e.target;
+//     console.log(value);
+//     // const countryName = document.querySelectorAll('.country-name');
+//   //   countryName.forEach(country => {
+//   //     console.log(country.textContent);   
+//   //     if((country.textContent.toLowerCase().includes(value.toLowerCase()))) {
+//   //       country.closest('.card').style.display = 'block';
+//   //     } else {
+//   //       country.closest('.card').style.display = 'none';
+//   //     }
+//   //   })
+//   // })
+// }
+
+var filterRegion = function filterRegion(region) {
+  region.addEventListener('click', function (e) {
+    var regions = document.querySelectorAll('.country-region');
+    regions.forEach(function (region) {
+      if (region.textContent === e.target.textContent) {
+        region.closest('.card').style.display = 'block';
+      } else {
+        region.closest('.card').style.display = 'none';
+      }
+    });
+  });
+};
+
+filterRegion(africa);
+filterRegion(america);
+filterRegion(asia);
+filterRegion(europe);
+filterRegion(oceania); //TODO: ==========>>>> FETCH COUNTRY DETAIL
 
 var countryDetail = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
@@ -13278,7 +13332,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58108" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53940" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
