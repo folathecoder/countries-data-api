@@ -13076,7 +13076,7 @@ var spinner = function spinner(parentElement) {
 
 var countryData = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-    var response, data, res, markup;
+    var response, data, markup;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -13103,29 +13103,26 @@ var countryData = /*#__PURE__*/function () {
 
           case 9:
             data = _context.sent;
-            res = data;
-            console.log(res); //Render Fetch Data to the Homepage
-
-            markup = res.map(function (country) {
+            //Render Fetch Data to the Homepage
+            markup = data.map(function (country) {
               return "\n            <div class=\"card\">\n            <a href=\"#".concat(country.alpha3Code, "\">\n                <div class=\"card__image\">\n                <img src=\"").concat(country.flag, "\" alt=\"").concat(country.name, "\" />\n                </div>\n                <div class=\"card__title\"><h2>").concat(country.name, "</h2></div>\n                <div class=\"card__info\">\n                <p>Population: <span>").concat(country.population, "</span></p>\n                <p>Region: <span>").concat(country.region, "</span></p>\n                <p>Capital: <span>").concat(country.capital, "</span></p>\n                </div>\n            </a>\n           </div>\n            ");
             }).join('');
-            container.innerHTML = ""; // spinnerContainer.style.display = 'none';
-
+            container.innerHTML = "";
             container.insertAdjacentHTML('afterbegin', markup);
-            _context.next = 20;
+            _context.next = 18;
             break;
 
-          case 17:
-            _context.prev = 17;
+          case 15:
+            _context.prev = 15;
             _context.t0 = _context["catch"](0);
             alert(_context.t0);
 
-          case 20:
+          case 18:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 17]]);
+    }, _callee, null, [[0, 15]]);
   }));
 
   return function countryData() {
@@ -13133,7 +13130,62 @@ var countryData = /*#__PURE__*/function () {
   };
 }();
 
-countryData();
+countryData(); //TODO: ==========>>>> FETCH COUNTRY DETAIL
+
+var countryDetail = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+    var response, data, markup;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return fetch('https://restcountries.eu/rest/v2/alpha/AFG');
+
+          case 3:
+            response = _context2.sent;
+
+            if (response.ok) {
+              _context2.next = 6;
+              break;
+            }
+
+            throw new Error('Could not fetch data from the API!');
+
+          case 6:
+            _context2.next = 8;
+            return response.json();
+
+          case 8:
+            data = _context2.sent;
+            console.log(response, data); //Render to the frontend
+
+            markup = "\n        <div class=\"container__details\">\n\n        <div class=\"country__image\">\n          <div>\n            <img src=\"".concat(data.flag, "\" alt=\"").concat(data.name, "\">\n          </div>\n        </div>\n\n        <div class=\"country__info\">\n          <h2>").concat(data.name, "</h2>\n          <div class=\"country__details\">\n            <ul>\n              <li>Native Name: <span>Unknown</span></li>\n              <li>Population: <span>").concat(data.population, "</span></li>\n              <li>Region: <span>Unknown</span></li>\n              <li>Sub Region: <span>Unknown</span></li>\n              <li>Capital: <span>Unknown</span></li>\n            </ul>\n            <ul>\n              <li>Top Level Domain: <span>Unknown</span></li>\n              <li>Currencies: <span>Unknown</span></li>\n              <li>Languages: <span>Unknown</span></li>\n            </ul>\n          </div>\n          <div class =\"country__header\">\n            <h3>Border Countries</h3>\n          </div>\n          <ul class=\"country__border\">\n            <li>France</li>\n            <li>Belgium</li>\n            <li>Netherlands</li>\n            <li>France</li>\n            <li>Belgium</li>\n            <li>Netherlands</li>\n          </ul>\n        </div>\n        </div>\n        ");
+            mainContainer.innerHTML = "";
+            mainContainer.insertAdjacentHTML('afterbegin', markup);
+            _context2.next = 18;
+            break;
+
+          case 15:
+            _context2.prev = 15;
+            _context2.t0 = _context2["catch"](0);
+            alert(_context2.t0);
+
+          case 18:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 15]]);
+  }));
+
+  return function countryDetail() {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+countryDetail();
 },{}],"src/js/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -13170,7 +13222,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52673" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59051" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -56,13 +56,10 @@ const countryData = async function() {
         if (!response.ok) throw new Error('Could not fetch data from the API!')
 
         const data = await response.json();
-        const res = data;
-
-        console.log(res);
 
         //Render Fetch Data to the Homepage
 
-        const markup = res.map(country => {
+        const markup = data.map(country => {
             return `
             <div class="card">
             <a href="#${country.alpha3Code}">
@@ -81,7 +78,6 @@ const countryData = async function() {
         }).join('');
 
         container.innerHTML = "";
-        // spinnerContainer.style.display = 'none';
         container.insertAdjacentHTML('afterbegin', markup);
 
     } catch (error) {
@@ -90,3 +86,67 @@ const countryData = async function() {
 }
 
 countryData();
+
+
+//TODO: ==========>>>> FETCH COUNTRY DETAIL
+
+const countryDetail = async function() {
+    try {
+        //Fetch individual country details
+        const response = await fetch('https://restcountries.eu/rest/v2/alpha/AFG');
+
+        //Throw a custom error
+        if (!response.ok) throw new Error('Could not fetch data from the API!')
+        const data = await response.json();
+        console.log(response, data);
+
+        //Render to the frontend
+        const markup = `
+        <div class="container__details">
+
+        <div class="country__image">
+          <div>
+            <img src="${data.flag}" alt="${data.name}">
+          </div>
+        </div>
+
+        <div class="country__info">
+          <h2>${data.name}</h2>
+          <div class="country__details">
+            <ul>
+              <li>Native Name: <span>Unknown</span></li>
+              <li>Population: <span>${data.population}</span></li>
+              <li>Region: <span>Unknown</span></li>
+              <li>Sub Region: <span>Unknown</span></li>
+              <li>Capital: <span>Unknown</span></li>
+            </ul>
+            <ul>
+              <li>Top Level Domain: <span>Unknown</span></li>
+              <li>Currencies: <span>Unknown</span></li>
+              <li>Languages: <span>Unknown</span></li>
+            </ul>
+          </div>
+          <div class ="country__header">
+            <h3>Border Countries</h3>
+          </div>
+          <ul class="country__border">
+            <li>France</li>
+            <li>Belgium</li>
+            <li>Netherlands</li>
+            <li>France</li>
+            <li>Belgium</li>
+            <li>Netherlands</li>
+          </ul>
+        </div>
+        </div>
+        `
+        mainContainer.innerHTML = "";
+        mainContainer.insertAdjacentHTML('afterbegin', markup);
+
+        
+    } catch (error) {
+        alert(error);
+    }
+}
+
+countryDetail();
