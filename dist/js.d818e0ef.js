@@ -13071,7 +13071,6 @@ var america = document.querySelector('#region-america');
 var asia = document.querySelector('#region-asia');
 var europe = document.querySelector('#region-europe');
 var oceania = document.querySelector('#region-oceania'); //TODO: ==========>>>> THEME SWITCH
-// ====> Deactivate Light Mode Icon (Default)
 
 lightIcon.style.display = 'none';
 var darkMode = localStorage.getItem('darkMode');
@@ -13121,8 +13120,9 @@ var countryData = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            //Insert Spinner
-            spinner(container);
+            //* ====> Insert Spinner
+            spinner(container); //* ====> Fetch Data From Country Endpoint
+
             _context.next = 4;
             return fetch('https://restcountries.eu/rest/v2/all');
 
@@ -13145,23 +13145,23 @@ var countryData = /*#__PURE__*/function () {
             //* ====> Render Fetch Data to the Homepage
             markup = data.map(function (country) {
               return "\n            <div class=\"card\">\n            <a href=\"#".concat(country.alpha3Code, "\">\n                <div class=\"card__image\">\n                <img src=\"").concat(country.flag, "\" alt=\"").concat(country.name, "\" />\n                </div>\n                <div class=\"card__title\"><h2 class=\"country-name\">").concat(country.name, "</h2></div>\n                <div class=\"card__info\">\n                <p>Population: <span>").concat(country.population, "</span></p>\n                <p>Region: <span class=\"country-region\">").concat(country.region, "</span></p>\n                <p>Capital: <span>").concat(country.capital, "</span></p>\n                </div>\n            </a>\n           </div>\n            ");
-            }).join(''); // container.innerHTML = "";
-
+            }).join('');
+            container.innerHTML = "";
             container.insertAdjacentHTML('afterbegin', markup);
-            _context.next = 17;
+            _context.next = 18;
             break;
 
-          case 14:
-            _context.prev = 14;
+          case 15:
+            _context.prev = 15;
             _context.t0 = _context["catch"](0);
             alert(_context.t0);
 
-          case 17:
+          case 18:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 14]]);
+    }, _callee, null, [[0, 15]]);
   }));
 
   return function countryData() {
@@ -13222,11 +13222,6 @@ var countryDetail = /*#__PURE__*/function () {
           case 0:
             _context2.prev = 0;
             //* ====> Hide the homepage display
-            // container.style.display ='none';
-            // container.innerHTML = "";
-            // cards.forEach(card => {
-            //   card.style.display = 'none';
-            // })
             searchContainer.style.display = 'none';
             filterContainer.style.display = 'none';
             home.style.display = 'initial'; //* ====> Extract the hash from href
@@ -13297,17 +13292,7 @@ var countryDetail = /*#__PURE__*/function () {
   };
 }();
 
-window.addEventListener('hashchange', countryDetail); //TODO: HOMEPAGE STATE
-// const homeRender = async function() {
-//   container.style.display ='initial';
-//   searchContainer.style.display ='initial';
-//   filterContainer.style.display = 'initial';
-//   home.style.display = 'none';
-//   // detailsContainer.style.display = 'none';
-// }
-// home.addEventListener('click', function(e) {
-//   homeRender();
-// })
+window.addEventListener('hashchange', countryDetail);
 },{}],"src/js/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -13344,7 +13329,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49677" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60202" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

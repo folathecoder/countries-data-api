@@ -8,13 +8,18 @@
         padding: rem(20);
         min-height: rem(500);
         display: flex;
-        // justify-content: center;
+        justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+
+        @include media-query(tablet) {
+            justify-content: flex-start;
+        }
 
         & > * {
             flex: 1 rem(270);
             justify-self: flex-start;
+            align-self: flex-start;
             max-width: rem(280);
             min-height: rem(350);
         }

@@ -249,12 +249,19 @@ h3 {
   padding: 1.25rem;
   min-height: 31.25rem;
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+@media screen and (min-width: 992px) {
+  .container__inner {
+    justify-content: flex-start;
+  }
 }
 .container__inner > * {
   flex: 1 16.875rem;
   justify-self: flex-start;
+  align-self: flex-start;
   max-width: 17.5rem;
   min-height: 21.875rem;
 }

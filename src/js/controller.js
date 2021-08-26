@@ -112,6 +112,7 @@ const countryData = async function() {
             `
         }).join('');
 
+        container.innerHTML = "";
         container.insertAdjacentHTML('afterbegin', markup);
 
     } catch (error) {
@@ -136,7 +137,6 @@ search.addEventListener('input', function(e) {
       country.closest('.card').style.display = 'none';
     }
   })
-
 })
 
 //TODO: ==========>>>> REGION FILTER 
@@ -234,7 +234,7 @@ const countryDetail = async function() {
         </div>
         </div>
         `
-
+        // mainContainer.innerHTML = "";
         mainContainer.insertAdjacentHTML('afterbegin', markup);
 
     } catch (error) {
