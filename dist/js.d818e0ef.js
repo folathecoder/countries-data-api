@@ -13065,12 +13065,7 @@ var body = document.body;
 var search = document.querySelector('.search__input');
 var cards = document.querySelectorAll('.card');
 var home = document.querySelector('.home__button');
-var allRegions = document.querySelector('#region-all');
-var africa = document.querySelector('#region-africa');
-var america = document.querySelector('#region-america');
-var asia = document.querySelector('#region-asia');
-var europe = document.querySelector('#region-europe');
-var oceania = document.querySelector('#region-oceania'); //TODO: ==========>>>> HIDE HOME BACK BUTTON ON LOAD
+var regions = document.querySelector('#regions'); // //TODO: ==========>>>> HIDE HOME BACK BUTTON ON LOAD
 
 home.style.display = 'none'; //TODO: ==========>>>> THEME SWITCH
 
@@ -13186,31 +13181,20 @@ search.addEventListener('input', function (e) {
   });
 }); //TODO: ==========>>>> REGION FILTER 
 
-var filterRegion = function filterRegion(region) {
-  region.addEventListener('click', function (e) {
-    var regions = document.querySelectorAll('.country-region');
-    regions.forEach(function (region) {
-      if (region.textContent === e.target.textContent) {
+regions.addEventListener('change', function (e) {
+  var regions = document.querySelectorAll('.country-region');
+  regions.forEach(function (region) {
+    if (e.target.value === "All") {
+      region.closest('.card').style.display = 'block';
+    } else {
+      if (region.textContent === e.target.value) {
         region.closest('.card').style.display = 'block';
       } else {
         region.closest('.card').style.display = 'none';
       }
-    });
+    }
   });
-};
-
-filterRegion(africa); //Filter African Countries
-
-filterRegion(america); //Filter American Countries
-
-filterRegion(asia); //Filter Asian Countries
-
-filterRegion(europe); //Filter European Countries
-
-filterRegion(oceania); //Filter Oceanian Countries
-
-allRegions.addEventListener('click', countryData); //Show all Countries
-//TODO: ==========>>>> FETCH COUNTRY DETAIL
+}); //TODO: ==========>>>> FETCH COUNTRY DETAIL
 
 var countryDetail = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
@@ -13268,8 +13252,7 @@ var countryDetail = /*#__PURE__*/function () {
 
             markup = "\n        <div class=\"container__details\">\n\n        <div class=\"country__image\">\n          <div>\n            <img src=\"".concat(data.flag, "\" alt=\"").concat(data.name, "\">\n          </div>\n        </div>\n\n        <div class=\"country__info\">\n          <h2>").concat(data.name, "</h2>\n          <div class=\"country__details\">\n            <ul>\n              <li>Native Name: <span>").concat(data.nativeName, "</span></li>\n              <li>Population: <span>").concat(data.population, "</span></li>\n              <li>Region: <span>").concat(data.region, "</span></li>\n              <li>Sub Region: <span>").concat(data.subregion, "</span></li>\n              <li>Capital: <span>").concat(data.capital, "</span></li>\n            </ul>\n            <ul>\n              <li>Top Level Domain: <span>").concat(data.topLevelDomain, "</span></li>\n              <li>Currencies: <span>").concat(currencyName, " (").concat(currencySymbol, ")</span></li>\n              <li>Languages: <span>").concat(langName, "</span></li>\n            </ul>\n          </div>\n          <div class =\"country__header\">\n            <h3>Border Countries</h3>\n          </div>\n          <ul class=\"country__border\">\n            ").concat(data.borders.map(function (border) {
               return "\n                <li><a href=\"#".concat(border, "\">").concat(border, "</a></li>\n              ");
-            }).join(''), "\n          </ul>\n        </div>\n        </div>\n        "); // mainContainer.innerHTML = "";
-
+            }).join(''), "\n          </ul>\n        </div>\n        </div>\n        ");
             mainContainer.insertAdjacentHTML('afterbegin', markup);
             _context2.next = 27;
             break;
@@ -13329,7 +13312,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60202" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53196" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

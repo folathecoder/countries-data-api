@@ -15,14 +15,10 @@ const search = document.querySelector('.search__input');
 const cards = document.querySelectorAll('.card');
 const home = document.querySelector('.home__button');
 
-const allRegions = document.querySelector('#region-all');
-const africa = document.querySelector('#region-africa');
-const america = document.querySelector('#region-america');
-const asia = document.querySelector('#region-asia');
-const europe = document.querySelector('#region-europe');
-const oceania = document.querySelector('#region-oceania');
+const regions = document.querySelector('#regions');
 
-//TODO: ==========>>>> HIDE HOME BACK BUTTON ON LOAD
+// //TODO: ==========>>>> HIDE HOME BACK BUTTON ON LOAD
+
 home.style.display = 'none';
 
 //TODO: ==========>>>> THEME SWITCH
@@ -139,28 +135,24 @@ search.addEventListener('input', function(e) {
 })
 
 //TODO: ==========>>>> REGION FILTER 
-const filterRegion = function(region) {
 
-  region.addEventListener('click', function(e) {
-    const regions = document.querySelectorAll('.country-region');
+regions.addEventListener('change', function(e) {
 
-    regions.forEach(region => {
-      if(region.textContent === e.target.textContent) {
+  const regions = document.querySelectorAll('.country-region');
+
+  regions.forEach(region => {
+    if(e.target.value === "All") {
+      region.closest('.card').style.display = 'block';
+    } 
+    else {
+      if(region.textContent === e.target.value) {
         region.closest('.card').style.display = 'block';
       } else {
         region.closest('.card').style.display = 'none';
       }
-    })
+    }
   })
-}
-
-filterRegion(africa); //Filter African Countries
-filterRegion(america); //Filter American Countries
-filterRegion(asia); //Filter Asian Countries
-filterRegion(europe); //Filter European Countries
-filterRegion(oceania); //Filter Oceanian Countries
-allRegions.addEventListener('click', countryData); //Show all Countries
-
+})
 
 //TODO: ==========>>>> FETCH COUNTRY DETAIL
 const countryDetail = async function() {
@@ -233,7 +225,6 @@ const countryDetail = async function() {
         </div>
         </div>
         `
-        // mainContainer.innerHTML = "";
         mainContainer.insertAdjacentHTML('afterbegin', markup);
 
     } catch (error) {
