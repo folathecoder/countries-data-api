@@ -332,14 +332,21 @@ h3 {
 }
 
 .card {
+  min-height: 21.875rem;
   background-color: var(--color-100);
   box-shadow: 0rem 0.0625rem 0.3125rem var(--color-400);
   border-radius: 0.3125rem;
   cursor: pointer;
   margin: 1.25rem;
 }
+.card__image {
+  height: 13.75rem;
+}
 .card__image img {
   border-radius: 0.3125rem 0.3125rem 0rem 0rem;
+  object-fit: cover;
+  height: 100%;
+  width: auto;
 }
 .card__title {
   padding: 1.25rem 1.25rem 0.625rem;

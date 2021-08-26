@@ -88,6 +88,7 @@ const countryData = async function() {
 
         const data = await response.json();
 
+
         //* ====> Render Fetch Data to the Homepage
         const markup = data.map(country => {
             return `
@@ -98,7 +99,7 @@ const countryData = async function() {
                 </div>
                 <div class="card__title"><h2 class="country-name">${country.name}</h2></div>
                 <div class="card__info">
-                <p>Population: <span>${country.population}</span></p>
+                <p>Population: <span class="country-population">${country.population}</span></p>
                 <p>Region: <span class="country-region">${country.region}</span></p>
                 <p>Capital: <span>${country.capital}</span></p>
                 </div>
@@ -119,12 +120,10 @@ countryData();
 //TODO: ==========>>>> SEARCH FILTER 
 search.addEventListener('input', function(e) {
   const { value } = e.target;
-  console.log(value);
 
   const countryName = document.querySelectorAll('.country-name');
 
   countryName.forEach(country => {
-    console.log(country.textContent);   
     
     if((country.textContent.toLowerCase().includes(value.toLowerCase()))) {
       country.closest('.card').style.display = 'block';
@@ -201,7 +200,7 @@ const countryDetail = async function() {
           <div class="country__details">
             <ul>
               <li>Native Name: <span>${data.nativeName}</span></li>
-              <li>Population: <span>${data.population}</span></li>
+              <li>Population: <span class="country-population">${data.population}</span></li>
               <li>Region: <span>${data.region}</span></li>
               <li>Sub Region: <span>${data.subregion}</span></li>
               <li>Capital: <span>${data.capital}</span></li>
@@ -224,7 +223,9 @@ const countryDetail = async function() {
           </ul>
         </div>
         </div>
-        `
+        `;
+
+        mainContainer.innerHTML = "";
         mainContainer.insertAdjacentHTML('afterbegin', markup);
 
     } catch (error) {
@@ -233,3 +234,4 @@ const countryDetail = async function() {
 }
 
 window.addEventListener('hashchange', countryDetail);
+

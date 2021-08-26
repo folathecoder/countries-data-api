@@ -1,13 +1,21 @@
 //TODO: ==========>>>> CARD
 .card {
+    min-height: rem(350);
     background-color: var(--color-100);
     box-shadow: $shadow;
     border-radius: rem(5);
     cursor: pointer;
     margin: rem(20);
 
-    &__image img {
-        border-radius: rem(5) rem(5) rem(0) rem(0);
+    &__image {
+        height: rem(220);
+
+        img {
+            border-radius: rem(5) rem(5) rem(0) rem(0);
+            object-fit: cover;
+            height: 100%;
+            width: auto;
+        }
     }
     &__title {
         padding: rem(20) rem(20) rem(10);

@@ -13139,7 +13139,7 @@ var countryData = /*#__PURE__*/function () {
             data = _context.sent;
             //* ====> Render Fetch Data to the Homepage
             markup = data.map(function (country) {
-              return "\n            <div class=\"card\">\n            <a href=\"#".concat(country.alpha3Code, "\">\n                <div class=\"card__image\">\n                <img src=\"").concat(country.flag, "\" alt=\"").concat(country.name, "\" />\n                </div>\n                <div class=\"card__title\"><h2 class=\"country-name\">").concat(country.name, "</h2></div>\n                <div class=\"card__info\">\n                <p>Population: <span>").concat(country.population, "</span></p>\n                <p>Region: <span class=\"country-region\">").concat(country.region, "</span></p>\n                <p>Capital: <span>").concat(country.capital, "</span></p>\n                </div>\n            </a>\n           </div>\n            ");
+              return "\n            <div class=\"card\">\n            <a href=\"#".concat(country.alpha3Code, "\">\n                <div class=\"card__image\">\n                <img src=\"").concat(country.flag, "\" alt=\"").concat(country.name, "\" />\n                </div>\n                <div class=\"card__title\"><h2 class=\"country-name\">").concat(country.name, "</h2></div>\n                <div class=\"card__info\">\n                <p>Population: <span class=\"country-population\">").concat(country.population, "</span></p>\n                <p>Region: <span class=\"country-region\">").concat(country.region, "</span></p>\n                <p>Capital: <span>").concat(country.capital, "</span></p>\n                </div>\n            </a>\n           </div>\n            ");
             }).join('');
             container.innerHTML = "";
             container.insertAdjacentHTML('afterbegin', markup);
@@ -13168,11 +13168,8 @@ countryData(); //TODO: ==========>>>> SEARCH FILTER
 
 search.addEventListener('input', function (e) {
   var value = e.target.value;
-  console.log(value);
   var countryName = document.querySelectorAll('.country-name');
   countryName.forEach(function (country) {
-    console.log(country.textContent);
-
     if (country.textContent.toLowerCase().includes(value.toLowerCase())) {
       country.closest('.card').style.display = 'block';
     } else {
@@ -13250,24 +13247,25 @@ var countryDetail = /*#__PURE__*/function () {
             _data$languages = _slicedToArray(data.languages, 1), language = _data$languages[0];
             langName = language.name; //* ====> Render to the frontend
 
-            markup = "\n        <div class=\"container__details\">\n\n        <div class=\"country__image\">\n          <div>\n            <img src=\"".concat(data.flag, "\" alt=\"").concat(data.name, "\">\n          </div>\n        </div>\n\n        <div class=\"country__info\">\n          <h2>").concat(data.name, "</h2>\n          <div class=\"country__details\">\n            <ul>\n              <li>Native Name: <span>").concat(data.nativeName, "</span></li>\n              <li>Population: <span>").concat(data.population, "</span></li>\n              <li>Region: <span>").concat(data.region, "</span></li>\n              <li>Sub Region: <span>").concat(data.subregion, "</span></li>\n              <li>Capital: <span>").concat(data.capital, "</span></li>\n            </ul>\n            <ul>\n              <li>Top Level Domain: <span>").concat(data.topLevelDomain, "</span></li>\n              <li>Currencies: <span>").concat(currencyName, " (").concat(currencySymbol, ")</span></li>\n              <li>Languages: <span>").concat(langName, "</span></li>\n            </ul>\n          </div>\n          <div class =\"country__header\">\n            <h3>Border Countries</h3>\n          </div>\n          <ul class=\"country__border\">\n            ").concat(data.borders.map(function (border) {
+            markup = "\n        <div class=\"container__details\">\n\n        <div class=\"country__image\">\n          <div>\n            <img src=\"".concat(data.flag, "\" alt=\"").concat(data.name, "\">\n          </div>\n        </div>\n\n        <div class=\"country__info\">\n          <h2>").concat(data.name, "</h2>\n          <div class=\"country__details\">\n            <ul>\n              <li>Native Name: <span>").concat(data.nativeName, "</span></li>\n              <li>Population: <span class=\"country-population\">").concat(data.population, "</span></li>\n              <li>Region: <span>").concat(data.region, "</span></li>\n              <li>Sub Region: <span>").concat(data.subregion, "</span></li>\n              <li>Capital: <span>").concat(data.capital, "</span></li>\n            </ul>\n            <ul>\n              <li>Top Level Domain: <span>").concat(data.topLevelDomain, "</span></li>\n              <li>Currencies: <span>").concat(currencyName, " (").concat(currencySymbol, ")</span></li>\n              <li>Languages: <span>").concat(langName, "</span></li>\n            </ul>\n          </div>\n          <div class =\"country__header\">\n            <h3>Border Countries</h3>\n          </div>\n          <ul class=\"country__border\">\n            ").concat(data.borders.map(function (border) {
               return "\n                <li><a href=\"#".concat(border, "\">").concat(border, "</a></li>\n              ");
             }).join(''), "\n          </ul>\n        </div>\n        </div>\n        ");
+            mainContainer.innerHTML = "";
             mainContainer.insertAdjacentHTML('afterbegin', markup);
-            _context2.next = 27;
+            _context2.next = 28;
             break;
 
-          case 24:
-            _context2.prev = 24;
+          case 25:
+            _context2.prev = 25;
             _context2.t0 = _context2["catch"](0);
             alert(_context2.t0);
 
-          case 27:
+          case 28:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 24]]);
+    }, _callee2, null, [[0, 25]]);
   }));
 
   return function countryDetail() {
@@ -13312,7 +13310,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53196" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63968" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
