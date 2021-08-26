@@ -22,6 +22,8 @@ const asia = document.querySelector('#region-asia');
 const europe = document.querySelector('#region-europe');
 const oceania = document.querySelector('#region-oceania');
 
+//TODO: ==========>>>> HIDE HOME BACK BUTTON ON LOAD
+home.style.display = 'none';
 
 //TODO: ==========>>>> THEME SWITCH
 lightIcon.style.display = 'none';
@@ -60,9 +62,6 @@ themeBtn.addEventListener('click', function(e) {
       disableDarkMode();
   }
 });
-
-//TODO: ==========>>>> HIDE HOME BACK BUTTON ON LOAD
-home.style.display = 'none';
 
 //TODO: ==========>>>> PRELOADER SPINNER 
 const spinner = function(parentElement) {
