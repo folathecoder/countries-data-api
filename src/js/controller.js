@@ -6,6 +6,8 @@ const mainContainer = document.querySelector('.container');
 const searchContainer = document.querySelector('.search');
 const filterContainer = document.querySelector('.filter');
 const detailsContainer = document.querySelector('.container__details');
+const option = document.querySelector('.options');
+
 
 const darkIcon = document.querySelector('.header-theme-dark-icon');
 const lightIcon = document.querySelector('.header-theme-light-icon');
@@ -16,10 +18,6 @@ const cards = document.querySelectorAll('.card');
 const home = document.querySelector('.home__button');
 
 const regions = document.querySelector('#regions');
-
-// //TODO: ==========>>>> HIDE HOME BACK BUTTON ON LOAD
-
-home.style.display = 'none';
 
 //TODO: ==========>>>> THEME SWITCH
 lightIcon.style.display = 'none';
@@ -160,7 +158,7 @@ const countryDetail = async function() {
         //* ====> Hide the homepage display
         searchContainer.style.display ='none';
         filterContainer.style.display ='none';
-        home.style.display = 'initial';
+        option.style.display = 'none';
 
         //* ====> Extract the hash from href
         const id = window.location.hash.slice(1);
@@ -187,6 +185,11 @@ const countryDetail = async function() {
 
         //* ====> Render to the frontend
         const markup = `
+        <div class="home__button">
+          <a href="index.html" class="home__btn">
+            <span><i class="fas fa-arrow-left"></i></span> Back
+          </a>      
+        </div>
         <div class="container__details">
 
         <div class="country__image">

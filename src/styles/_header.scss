@@ -130,6 +130,11 @@
 }
 .home__button {
     align-self: flex-start;
+    max-width: $max-width;
+    min-height: rem(50);
+    margin: rem(0) auto;
+    display: flex;
+    align-items: center;
 }
 .home__btn {
     background-color: var(--color-100);
@@ -137,6 +142,7 @@
     font-size: rem(15);
     border: none;
     padding: rem(13) rem(40);
+    margin: rem(20);
     cursor: pointer;
     box-shadow: rem(0) rem(0) rem(6) rgba(0, 0, 0, 0.219);
 

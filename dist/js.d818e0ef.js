@@ -13058,6 +13058,7 @@ var mainContainer = document.querySelector('.container');
 var searchContainer = document.querySelector('.search');
 var filterContainer = document.querySelector('.filter');
 var detailsContainer = document.querySelector('.container__details');
+var option = document.querySelector('.options');
 var darkIcon = document.querySelector('.header-theme-dark-icon');
 var lightIcon = document.querySelector('.header-theme-light-icon');
 var themeBtn = document.querySelector('.header-theme');
@@ -13065,9 +13066,7 @@ var body = document.body;
 var search = document.querySelector('.search__input');
 var cards = document.querySelectorAll('.card');
 var home = document.querySelector('.home__button');
-var regions = document.querySelector('#regions'); // //TODO: ==========>>>> HIDE HOME BACK BUTTON ON LOAD
-
-home.style.display = 'none'; //TODO: ==========>>>> THEME SWITCH
+var regions = document.querySelector('#regions'); //TODO: ==========>>>> THEME SWITCH
 
 lightIcon.style.display = 'none';
 var darkMode = localStorage.getItem('darkMode');
@@ -13205,7 +13204,7 @@ var countryDetail = /*#__PURE__*/function () {
             //* ====> Hide the homepage display
             searchContainer.style.display = 'none';
             filterContainer.style.display = 'none';
-            home.style.display = 'initial'; //* ====> Extract the hash from href
+            option.style.display = 'none'; //* ====> Extract the hash from href
 
             id = window.location.hash.slice(1);
 
@@ -13247,7 +13246,7 @@ var countryDetail = /*#__PURE__*/function () {
             _data$languages = _slicedToArray(data.languages, 1), language = _data$languages[0];
             langName = language.name; //* ====> Render to the frontend
 
-            markup = "\n        <div class=\"container__details\">\n\n        <div class=\"country__image\">\n          <div>\n            <img src=\"".concat(data.flag, "\" alt=\"").concat(data.name, "\">\n          </div>\n        </div>\n\n        <div class=\"country__info\">\n          <h2>").concat(data.name, "</h2>\n          <div class=\"country__details\">\n            <ul>\n              <li>Native Name: <span>").concat(data.nativeName, "</span></li>\n              <li>Population: <span class=\"country-population\">").concat(data.population, "</span></li>\n              <li>Region: <span>").concat(data.region, "</span></li>\n              <li>Sub Region: <span>").concat(data.subregion, "</span></li>\n              <li>Capital: <span>").concat(data.capital, "</span></li>\n            </ul>\n            <ul>\n              <li>Top Level Domain: <span>").concat(data.topLevelDomain, "</span></li>\n              <li>Currencies: <span>").concat(currencyName, " (").concat(currencySymbol, ")</span></li>\n              <li>Languages: <span>").concat(langName, "</span></li>\n            </ul>\n          </div>\n          <div class =\"country__header\">\n            <h3>Border Countries</h3>\n          </div>\n          <ul class=\"country__border\">\n            ").concat(data.borders.map(function (border) {
+            markup = "\n        <div class=\"home__button\">\n          <a href=\"index.html\" class=\"home__btn\">\n            <span><i class=\"fas fa-arrow-left\"></i></span> Back\n          </a>      \n        </div>\n        <div class=\"container__details\">\n\n        <div class=\"country__image\">\n          <div>\n            <img src=\"".concat(data.flag, "\" alt=\"").concat(data.name, "\">\n          </div>\n        </div>\n\n        <div class=\"country__info\">\n          <h2>").concat(data.name, "</h2>\n          <div class=\"country__details\">\n            <ul>\n              <li>Native Name: <span>").concat(data.nativeName, "</span></li>\n              <li>Population: <span class=\"country-population\">").concat(data.population, "</span></li>\n              <li>Region: <span>").concat(data.region, "</span></li>\n              <li>Sub Region: <span>").concat(data.subregion, "</span></li>\n              <li>Capital: <span>").concat(data.capital, "</span></li>\n            </ul>\n            <ul>\n              <li>Top Level Domain: <span>").concat(data.topLevelDomain, "</span></li>\n              <li>Currencies: <span>").concat(currencyName, " (").concat(currencySymbol, ")</span></li>\n              <li>Languages: <span>").concat(langName, "</span></li>\n            </ul>\n          </div>\n          <div class =\"country__header\">\n            <h3>Border Countries</h3>\n          </div>\n          <ul class=\"country__border\">\n            ").concat(data.borders.map(function (border) {
               return "\n                <li><a href=\"#".concat(border, "\">").concat(border, "</a></li>\n              ");
             }).join(''), "\n          </ul>\n        </div>\n        </div>\n        ");
             mainContainer.innerHTML = "";
@@ -13310,7 +13309,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63968" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51566" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

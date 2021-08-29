@@ -219,6 +219,11 @@ h3 {
 
 .home__button {
   align-self: flex-start;
+  max-width: 81.25rem;
+  min-height: 3.125rem;
+  margin: 0rem auto;
+  display: flex;
+  align-items: center;
 }
 
 .home__btn {
@@ -227,6 +232,7 @@ h3 {
   font-size: 0.9375rem;
   border: none;
   padding: 0.8125rem 2.5rem;
+  margin: 1.25rem;
   cursor: pointer;
   box-shadow: 0rem 0rem 0.375rem rgba(0, 0, 0, 0.219);
 }
